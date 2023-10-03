@@ -1,0 +1,61 @@
+server:
+  port: 8765
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: oauth
+          uri: lb://sinebot-oauth-server
+          predicates:
+            - Path=/oauth2/authorize/**,/oauth2/token/**,/oauth2/token-info/**,/user/**
+          filters:
+            - PreserveHostHeader
+        - id: yandex
+          uri: lb://yandex-iot-api
+          predicates:
+            - Path=/api/yandex/v1.0/**
+          filters:
+            - PreserveHostHeader
+        - id: routers
+          uri: lb://sinebot-keenetic-service
+          predicates:
+            - Path=/api/device/**,/api/model/**,/api/vendor/**
+          filters:
+            - PreserveHostHeader
+            - TokenRelay=
+            - RemoveRequestHeader=Cookie
+        - id: ui
+          uri: lb://sinebot-ui-service
+          predicates:
+            - Path=/,/device/**,/styles/**,/scripts/**,/images/**
+          filters:
+            - TokenRelay=
+            - PreserveHostHeader
+  security:
+    oauth2:
+      client:
+        registration:
+          internal-client:
+            provider: spring
+            client-id: internal-client
+            client-secret: "{cipher}7064708e6cd6eae25f1e2e620002184c0b0e39151c42d384af47967af1907fb8a4425b9f10b8d055856d056025c7acca"
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+        provider:
+          spring:
+            authorization-uri: https://gateway.sinebot.keenetic.pro/oauth2/authorize
+            token-uri: https://gateway.sinebot.keenetic.pro/oauth2/token
+            user-info-uri: https://gateway.sinebot.keenetic.pro/oauth2/token-info
+            user-name-attribute: sub
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+logging:
+  level:
+    root: INFO

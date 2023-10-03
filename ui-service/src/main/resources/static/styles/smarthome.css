@@ -1,0 +1,129 @@
+* {
+    font-family: helvetica, sans-serif;
+  }
+
+body {
+    padding: 10px;
+}
+
+.smarthome-table {
+    border: 1px solid #ABB2B9;
+    width: 1000px;
+    text-align: left;
+    border-collapse: collapse;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.smarthome-table th {
+    border: 3px solid #ABB2B9;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.smarthome-table td, th {
+    padding: 5px;
+    border: 1px solid #ABB2B9;
+    border-left: none;
+    border-right: none;
+}
+
+.smarthome-table th:last-child, td:last-child {
+     border: none;
+     width: 150px;
+     vertical-align: top;
+}
+
+.device-header {
+    background-image: url("../images/routers.png");
+    background-repeat: no-repeat;
+    padding: 35px;
+    padding-left: 100px;
+}
+
+.device-table-button {
+    background: none;
+    cursor:pointer;
+    width:25px;
+    height:25px;
+    border: none;
+    padding: 0;
+}
+
+.device-table-button img {
+    width: 25px;
+    height: 25px;
+    align: middle;
+}
+
+.device-form-button {
+    background: none;
+    cursor:pointer;
+    width:25px;
+    height:25px;
+    border: none;
+    padding: 0;
+}
+
+.device-form-button img {
+    width: 30px;
+    height: 30px;
+    align: middle;
+}
+
+.comment-text-area {
+    width: 1000px;
+    height: 150px;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+}
+
+.comment-pre {
+    width: 1000px;
+    white-space: break-spaces;
+    line-break: anywhere;
+    #box-sizing: border-box;
+    #height: 150px;
+}
+
+label { display:block }
+
+
+.device-edit-form select, input {
+    width: 500px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.errors {
+     color: red;
+}
+
+.lang-selector summary, ul {
+    list-style: none;
+}
+
+.lang-selector summary::-webkit-details-marker {
+     display: none; /* special fix, required just for Safari */
+}
+.lang-selector ul {
+    position: absolute;
+    background: white;
+    box-shadow: 5px 2px 2px #BDEDFF;
+    margin-top: -5px;
+    padding: 5px;
+}
+.lang-selector li {
+    padding: 1px;
+    margin: 1px;
+}
+.lang-selector li:hover {
+    background: #B0E0E6;
+}

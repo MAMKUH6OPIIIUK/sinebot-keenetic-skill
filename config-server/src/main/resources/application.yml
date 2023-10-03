@@ -1,0 +1,19 @@
+server:
+  port: 8888
+spring:
+  profiles:
+    active: native
+  application:
+    name: sinebot-configuration-server
+  cloud:
+    config:
+      server:
+        encrypt:
+          enabled: false
+        native:
+          search-locations: classpath:/config
+encrypt:
+  key: sine_kjkszpj_bot
+logging:
+  level:
+    root: INFO
