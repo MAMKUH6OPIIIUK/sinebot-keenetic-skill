@@ -1,0 +1,10 @@
+spring:
+  config:
+    import: configserver:http://localhost:8888
+  application:
+    name: sinebot-oauth-server
+  cloud:
+    config:
+      fail-fast: true
+encrypt:
+  key: sine_kjkszpj_bot

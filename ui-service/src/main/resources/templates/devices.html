@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{smarthome-site-title}">Умные роутеры</title>
+    <link rel="icon" th:href="@{/images/favicon.ico}" href="../static/images/favicon.ico"/>
+    <link rel="stylesheet" th:href="@{/styles/smarthome.css}" href="../static/styles/smarthome.css">
+    <script th:inline="javascript">
+        const viewButtonTitle = /*[[#{view-device-button-title}]]*/ "Посмотреть информацию о роутере";
+        const editButtonTitle = /*[[#{edit-device-button-title}]]*/ "Редактировать данные о роутере";
+        const deleteButtonTitle = /*[[#{delete-device-button-title}]]*/ "Удалить роутре";
+    </script>
+    <script type="text/javascript" th:src="@{/scripts/rest-client.js}" src="../static/scripts/rest-client.js"></script>
+    <script type="text/javascript" th:src="@{/scripts/devices.js}" src="../static/scripts/devices.js"></script>
+</head>
+<body onload="renderAllDevices()"></body>
+<h3 class="device-header" th:text="#{device-list-header}">Ваши роутеры</h3>
+<table class="smarthome-table" id="smarthome-table">
+    <thead>
+    <tr>
+        <th hidden th:text="#{device-field-id}">ID</th>
+        <th th:text="#{device-field-model-info}">Модель</th>
+        <th th:text="#{device-field-name}">Имя устройства</th>
+        <th th:text="#{device-field-description}">Описание</th>
+        <th>
+            <button title="Добавить новый роутер" th:title="#{add-device-button-title}" class="device-table-button">
+                <a th:href="@{/device/create}">
+                    <img th:src="@{/images/add-icon.png}" src="../static/images/add-icon.png"/>
+                </a>
+            </button>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>

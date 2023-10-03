@@ -1,0 +1,25 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: "http://localhost:8762/eureka"
+    register-with-eureka: true
+    fetch-registry: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        #include: metrics,health,logfile,info
+  endpoint:
+    configprops:
+      show-values: always
+    env:
+      show-values: always
+    healts:
+      show-details: when-authorized
+  health:
+    defaults:
+      enabled: true
+logging:
+  level:
+    root: INFO

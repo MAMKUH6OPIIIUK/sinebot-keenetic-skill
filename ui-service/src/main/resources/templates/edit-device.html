@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{smarthome-site-title}">Умные роутеры</title>
+    <link rel="icon" th:href="@{/images/favicon.ico}" href="../static/images/favicon.ico"/>
+    <link rel="stylesheet" th:href="@{/styles/smarthome.css}" href="../static/styles/smarthome.css">
+    <script type="text/javascript" th:src="@{/scripts/rest-client.js}" src="../static/scripts/rest-client.js"></script>
+    <script type="text/javascript" th:src="@{/scripts/edit-device.js}" src="../static/scripts/edit-device.js"></script>
+</head>
+<body onload="renderDeviceEditionFormData()">
+<h3 class="device-header" th:text="#{device-edit-header}">Введите или измените данные о роутере</h3>
+<form class="device-edit-form" action="devices.html">
+    <input type="hidden" id="id-input" name="id" th:value="${deviceId}">
+    <div>
+        <label for="new-device-model" th:text="#{device-prompt-model}">Модель:</label>
+        <select id="new-device-model" name="modelId">
+        </select>
+        <div hidden id="model-errors" class="errors"></div>
+    </div>
+    <div>
+        <label for="new-device-name" th:text="#{device-prompt-name}">Имя роутера:</label>
+        <input type="text" id="new-device-name" name="name">
+        <div hidden id="name-errors" class="errors"></div>
+    </div>
+    <div>
+        <label for="new-device-description" th:text="#{device-prompt-description}">Описание:</label>
+        <input type="text" id="new-device-description" name="description">
+        <div hidden id="description-errors" class="errors"></div>
+    </div>
+    <div>
+        <label for="new-device-domain" th:text="#{device-prompt-domain}">FQDN:</label>
+        <input type="text" id="new-device-domain" name="domainName">
+        <div hidden id="domain-errors" class="errors"></div>
+    </div>
+    <div>
+        <label for="new-device-login" th:text="#{device-prompt-login}">Логин:</label>
+        <input type="text" id="new-device-login" name="login">
+        <div hidden id="login-errors" class="errors"></div>
+    </div>
+    <div>
+        <label for="new-device-password" th:text="#{device-prompt-password}">Пароль:</label>
+        <input type="password" id="new-device-password" name="domainName">
+        <div hidden id="password-errors" class="errors"></div>
+    </div>
+    <div>
+        <button type="button" onclick="saveDevice()" title="Принять" th:title="#{accept-button-title}"
+                class="device-table-button">
+            <img th:src="@{/images/accept-icon.png}" src="../static/images/accept-icon.png"/>
+        </button>
+        <a href="devices.html" th:href="@{/device}">
+            <button type="button" title="Отменить" th:title="#{cancel-button-title}" class="device-table-button">
+                <img th:src="@{/images/cancel-icon.png}" src="../static/images/cancel-icon.png"/>
+            </button>
+        </a>
+    </div>
+</form>
+</body>
+</html>

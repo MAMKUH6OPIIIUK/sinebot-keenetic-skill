@@ -1,0 +1,32 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/keenetic_db
+    username: postgres
+    password: "{cipher}c5a38c55d835843448c345401808ab6ac24aa21270f4efdd2485c5271bcf2af3"
+    liquibase:
+      enabled: true
+    jpa:
+      generate-ddl: true
+      hibernate:
+        ddl-auto: validate
+      properties:
+        hibernate:
+          format_sql: false
+      show-sql: false
+  security:
+    oauth2:
+      introspection:
+        clientId: internal-client
+        clientSecret: "{cipher}7064708e6cd6eae25f1e2e620002184c0b0e39151c42d384af47967af1907fb8a4425b9f10b8d055856d056025c7acca"
+        introspectionEndpoint: http://sinebot-oauth-server/oauth2/token-info
+logging:
+  level:
+    ru:
+      oke:
+        sinebot: DEBUG
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true

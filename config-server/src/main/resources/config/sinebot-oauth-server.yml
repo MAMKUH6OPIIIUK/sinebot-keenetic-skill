@@ -1,0 +1,49 @@
+server:
+  port: 7777
+spring:
+  security:
+    oauth2:
+      authorizationserver:
+        issuer-url: https://sinebot.keenetic.pro
+        introspection-endpoint: /oauth2/token-info
+  messages:
+    encoding: UTF-8
+  datasource:
+    url: jdbc:postgresql://localhost:5432/security_db
+    username: postgres
+    password: "{cipher}c5a38c55d835843448c345401808ab6ac24aa21270f4efdd2485c5271bcf2af3"
+  liquibase:
+    enabled: true
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+resilience4j.circuitbreaker:
+  metrics:
+    enabled: true
+  configs:
+    default:
+      registerHealthIndicator: true
+      allowHealthIndicatorToFail: true
+      minimumNumberOfCalls: 10
+      slidingWindowType: COUNT_BASED
+      slidingWindowSize: 10
+      failureRateThreshold: 60
+      slowCallDurationThreshold: 3000
+      slowCallRateThreshold: 90
+      permittedNumberOfCallsInHalfOpenState: 5
+      waitDurationInOpenState: 10000
+  instances:
+    security-service:
+      baseConfig: default
+      ignoreExceptions:
+        - org.springframework.security.core.userdetails.UsernameNotFoundException
+        - ru.oke.sinebot.oauth.exception.AlreadyExistsException

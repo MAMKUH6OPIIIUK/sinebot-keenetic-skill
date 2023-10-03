@@ -1,0 +1,8 @@
+spring:
+  config:
+    import: configserver:http://localhost:8888
+  application:
+    name: sinebot-discovery-server
+  cloud:
+    config:
+      fail-fast: true
